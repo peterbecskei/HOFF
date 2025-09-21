@@ -1,0 +1,33 @@
+
+{
+  "manifest_version": 3,
+  "name": "Head Script Injector",
+  "version": "1.0.0",
+  "description": "Script beszúrása a <head> után, TabHTML változó beállításával.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "sidePanel", "sidePanel", "storage", "contextMenus", "activeTab", "tabs"]  ,
+  "host_permissions": ["<all_urls>"],
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Tab HTML Saver"
+
+
+  },
+    "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["injector.js"],
+      "run_at": "document_start"
+    }
+  ],
+ "web_accessible_resources": [{
+    "resources": ["script.js"],
+    "matches": ["<all_urls>"]
+  }]
+}
+
