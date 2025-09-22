@@ -16,9 +16,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 chrome.runtime.onMessage.addListener((message, sender) => {
   if (message.action === "saveContent") {
     // Fájlnév az URL alapján
-    let safeName = message.url.replace(/[^a-z0-9]/gi, "_").toLowerCase();
+    //let safeName = message.url.replace(/[^a-z0-9]/gi, "_").toLowerCase();
     //let filename = safeName + ".txt";
-    saveLinkToLocalStore(safeName);
+    saveLinkToLocalStore(message);
     //   chrome.downloads.download({
  //     url: URL.createObjectURL(
    //     new Blob([message.text], { type: "text/plain" })
@@ -38,7 +38,11 @@ function saveLinkToLocalStore(links) {
   url_csv.push(links);
 
   // Save the updated list back to local storage with key URL_DATA
-  chrome.storage.local.set('URL_DATA', JSON.stringify(url_csv));
+  // Adatok mentése localStorage-ba
+
+
+
+  chrome.storage.local.set({ 'URL_DATA': url_csv });
 }
 
 
@@ -50,5 +54,12 @@ function saveLinkToLocalStore(links) {
 //    url: dataUrl,
  //   filename: 'HREF.csv',
  //   saveAs: true
+//  });
+//}
+
+
+//function saveData() {
+//  chrome.storage.local.set({ [CONFIG.STORAGE_KEY]: autoData }, () => {
+    //console.log('Adatok elmentve:', Object.keys(autoData).length, 'elem');
 //  });
 //}

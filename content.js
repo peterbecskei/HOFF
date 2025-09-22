@@ -7,7 +7,7 @@
 const CONTENT = document.body.innerHTML || "";
 
 // Első 1000 karakter
-const snippet = CONTENT.slice(0, 1000);
+const snippet = CONTENT.slice(500, 5000);
 
 // Üzenet a háttérszolgáltatásnak
 chrome.runtime.sendMessage({
