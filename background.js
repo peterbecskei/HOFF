@@ -2,6 +2,7 @@
 chrome.runtime.onInstalled.addListener(() => {
   console.log('Extension installed');
 });
+
  url_csv = [];
 // Message listener for content scripts
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
