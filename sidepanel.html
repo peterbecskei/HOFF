@@ -1,92 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="hu">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <title>Sidepanel</title>
   <style>
     body {
-      width: 600px;
-      height: 800px;
-      padding: 15px;
       font-family: Arial, sans-serif;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 15px;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 10px;
-    }
-    .status {
-      padding: 10px;
-      border-radius: 4px;
-      margin-bottom: 10px;
-      display: none;
-    }
-    .success {
-      background-color: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-    .error {
-      background-color: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
+      margin: 0;
+      padding: 20px;
+      width: 300px;
+      background-color: #f0f0f0;
     }
     button {
+      display: block;
       width: 100%;
-      padding: 8px;
-      margin: 5px 0;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
       cursor: pointer;
     }
-    button:hover {
-      background-color: #45a049;
+    button:disabled {
+      cursor: not-allowed;
+      background-color: #ccc;
     }
-    .saved-items {
-      margin-top: 5px;
-      max-height: 600px;
-      overflow-x: auto;
+    .panel {
+      display: none;
     }
-    .saved-item {
-      padding: 8px;
-      border-bottom: 1px solid #eee;
-      font-size: 12px;
-        word-break: break-word;
-  white-space: normal;
-    }
-    .saved-item:last-child {
-      border-bottom: none;
+    .active {
+      display: block;
     }
   </style>
-<!--  <meta http-equiv="refresh" content="30">  -->
 </head>
 <body>
-  <div class="header" id="header">
-    <h3>Tab HTML Saver</h3>
+  <div id="main-menu" class="panel active">
+    <h2>Főmenü</h2>
+    <button id="menu_1"> Start </button>
+    <button id="menu_2"> Fetch </button>
+    <button id="menu_3" disabled>menu_3 (under development)</button>
+    <button id="menu_4" disabled>menu_4 (under development)</button>
+    <button id="menu_5" disabled>menu_5 (under development)</button>
   </div>
 
-  <div id="status" class="status"></div>
+  <div id="fetch-panel" class="panel">
+    <h2>fetch Panel</h2>
+    <button id="fetch"> Fetch </button>
+    <button id="get"> Get </button>
+    <button id="Data"> Data </button>
+    <button id="back-to-main1">back to.. </button>
+  </div>
 
-  <div>
-  <label for="symatInput">Symat</label>
-  <input type="text" id="symatInput" style="width: 300px; margin-bottom: 8px;">
-</div>
-<label>
-  <input type="checkbox" id="liveFilter" checked>
-  Live
-</label>
-
-  <button id="saveCurrent">Save Current Page HTML</button>
-  <button id="viewSaved">View Saved HTML</button>
-
-  <div class="saved-items" id="savedItems">
-   <!--  <h4>Recently Saved:</h4>  -->
-    <div id="savedList"></div>
+   <div id="player-panel" class="panel">
+    <h2>Lejátszó Panel</h2>
+    <button id="play">play</button>
+    <button id="pause">pause</button>
+    <button id="reset">reset (stop)</button>
+    <button id="back-to-main">back to main</button>
   </div>
 
   <script src="sidepanel.js"></script>
 </body>
 </html>
-

@@ -1,24 +1,21 @@
 // background.js
+
 chrome.runtime.onInstalled.addListener(() => {
   console.log('Extension installed');
+  chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
 });
 
  url_csv = [];
 // Message listener for content scripts
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "saveContent") {
-    //saveLinksToCSV(request.text);
-    sendResponse({status: "success"});
-  }
-  return true;
-});
+
 
 chrome.runtime.onMessage.addListener((message, sender) => {
   if (message.action === "saveContent") {
     // Fájlnév az URL alapján
     //let safeName = message.url.replace(/[^a-z0-9]/gi, "_").toLowerCase();
     //let filename = safeName + ".txt";
-    saveLinkToLocalStore(message);
+    saveContensToLocalStore(message);
+
     //   chrome.downloads.download({
  //     url: URL.createObjectURL(
    //     new Blob([message.text], { type: "text/plain" })
@@ -27,10 +24,29 @@ chrome.runtime.onMessage.addListener((message, sender) => {
  //     saveAs: false
  //   });
   }
+   if (message.action === "saveLinks") {
+        saveLinkToLocalStore(message);
+     }
+
+    if (message.action === "saveData") {
+        saveDATAToLocalStore(message);
+     }
+
 });
 
 
+
+
 function saveLinkToLocalStore(links) {
+  chrome.storage.local.set({ 'LINK_DATA': links });
+}
+
+
+function saveDATAToLocalStore(links) {
+  chrome.storage.local.set({ 'DATA_URL': links });
+}
+
+function saveContensToLocalStore(links) {
   // Retrieve existing list from local storage or initialize a new one
  // let url_csv = JSON.parse(localStorage.getItem('URL_DATA')) || [];
 
