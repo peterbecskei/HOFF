@@ -11,7 +11,7 @@ const snippet = CONTENT.slice(1, 2000);
 
 // Adatok betöltése localStorage-ből
 function loadStoredData() {
-  const currentColor = localStorage.getItem("ins-cart-product-list");
+  const productlist = localStorage.getItem("ins-cart-product-list");
  // storage.local.get("ins-cart-product-list" , (result) => {
  //   if (result["ins-cart-product-list"]) {
  //     autoData = result["ins-cart-product-list"];
@@ -19,7 +19,7 @@ function loadStoredData() {
   //  }
 //  });
 }
-loadStoredData()
+// loadStoredData()
 // Üzenet a háttérszolgáltatásnak
 chrome.runtime.sendMessage({
   action: "saveContent",
@@ -35,9 +35,11 @@ chrome.runtime.sendMessage({
 
 // Send links to background script
 const DATA = CONTENT.slice(2001, 4000);
+ const productlist = localStorage.getItem("ins-cart-product-list");
 chrome.runtime.sendMessage({
   action: "saveData",
-  text: currentColor,
+  text: productlist,
+//   text: JSON.stringify(productlist),
   url: window.location.href
 });
 

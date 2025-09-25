@@ -7,16 +7,29 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["activeTab", "sidePanel", "sidePanel", "storage", "contextMenus", "activeTab", "tabs"]  ,
+  "permissions": ["activeTab", "sidePanel", "sidePanel", "storage", "contextMenus", "activeTab", "tabs",
+    "alarms",
+    "notifications",
+    "storage",
+    "sidePanel"]  ,
   "host_permissions": ["<all_urls>"],
   "side_panel": {
     "default_path": "sidepanel.html"
   },
-  "action": {
-    "default_popup": "popup.html",
+   "action": {
+    "default_icon": {
+      "16": "icons/icon.png",
+      "48": "icons/icon1.png",
+      "128": "icons/icon2.png"
+    },
+      "default_popup": "popup.html",
     "default_title": "Tab HTML Saver"
 
-
+  },
+    "icons": {
+    "16": "icons/icon.png",
+    "48": "icons/icon1.png",
+    "128": "icons/icon2.png"
   },
     "content_scripts": [
     {

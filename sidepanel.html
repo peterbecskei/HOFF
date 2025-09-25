@@ -36,13 +36,14 @@
     <h2>Főmenü</h2>
     <button id="menu_1"> Start </button>
     <button id="menu_2"> Fetch </button>
-    <button id="menu_3" disabled>menu_3 (under development)</button>
+    <button id="menu_3"> Notif </button>
     <button id="menu_4" disabled>menu_4 (under development)</button>
     <button id="menu_5" disabled>menu_5 (under development)</button>
   </div>
 
   <div id="fetch-panel" class="panel">
     <h2>fetch Panel</h2>
+    <input id="fetchURL" type="text" value="http://ingatlan.com" style="width:100%;margin-bottom:10px;" />
     <button id="fetch"> Fetch </button>
     <button id="get"> Get </button>
     <button id="Data"> Data </button>
@@ -56,6 +57,18 @@
     <button id="reset">reset (stop)</button>
     <button id="back-to-main">back to main</button>
   </div>
+
+<div id="notif-panel" class="panel">
+       <h2>Notif Panel</h2>
+   <button id="startButton">Start Notifier</button>
+  <button id="stopButton">Stop Notifier</button>
+  <button id="editButton">Edit Notifier</button>
+  <button id="resetButton">Reset Notifier</button>
+       <button id="back-to-main2">back to main</button>
+    </div>
+
+    <h3>Notifications</h3>
+  <div id="notificationList"></div>
 
   <script src="sidepanel.js"></script>
 </body>
