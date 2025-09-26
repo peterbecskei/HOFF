@@ -50,21 +50,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Player panel gombok és funkciók
+
+// Fetch panel gombok és funkciók
+  // play, pause, reset: egyelőre üresen (később fejleszthető)
+  document.getElementById('Data').addEventListener('click', () => {
+    // Üresen hagyva
+    console.log('reset kattintva');
+  });
+
+
+  // Fetch gomb: új Chrome tabon nyissa meg a fetchURL címet
+  document.getElementById('fetch').addEventListener('click', () => {
+    const url = document.getElementById('fetchURL').value;
+    window.open(url, '_blank');
+    chrome.action.setPopup({popup: 'popup.html'})
+      chrome.action.openPopup()
+
+  });
+  // Get gomb: új Chrome tabon nyissa meg a fetchURL címet
+  document.getElementById('get').addEventListener('click', () => {
+   // const url = document.getElementById('get').value;
+     chrome.action.setPopup({popup: 'popup.html'})
+      chrome.action.openPopup()
+   // window.open(url, '_blank');
+  });
+
+
+
+  // Player panel gombok és funkciók
   // play, pause, reset: egyelőre üresen (később fejleszthető)
   document.getElementById('play').addEventListener('click', () => {
     // Üresen hagyva
     console.log('play kattintva');
   });
 
-  // Fetch gomb: új Chrome tabon nyissa meg a fetchURL címet
-  document.getElementById('fetch').addEventListener('click', () => {
-    const url = document.getElementById('fetchURL').value;
-    window.open(url, '_blank');
-  });
-
   document.getElementById('pause').addEventListener('click', () => {
     // Üresen hagyva
+     chrome.action.setPopup({popup: 'popup.html'})
+      chrome.action.openPopup()
     console.log('pause kattintva');
   });
 
@@ -75,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // Notification panel gombok és funkciók
+// Inicializálás alapértékekkel, ha még nincsenek beállítva
   document.getElementById("startButton").addEventListener("click", () => {
   chrome.storage.local.set({ isRunning: true });
   chrome.alarms.create("minuteNotifier", { periodInMinutes: 1 });

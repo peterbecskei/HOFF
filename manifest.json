@@ -17,19 +17,18 @@
     "default_path": "sidepanel.html"
   },
    "action": {
+    "default_popup": "popup.html",
+    "default_title": "Tab HTML Saver",
     "default_icon": {
-      "16": "icons/icon.png",
-      "48": "icons/icon1.png",
-      "128": "icons/icon2.png"
-    },
-      "default_popup": "popup.html",
-    "default_title": "Tab HTML Saver"
-
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
   },
     "icons": {
-    "16": "icons/icon.png",
-    "48": "icons/icon1.png",
-    "128": "icons/icon2.png"
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
     "content_scripts": [
     {
