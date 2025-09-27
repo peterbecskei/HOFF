@@ -63,6 +63,13 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('fetch').addEventListener('click', () => {
     const url = document.getElementById('fetchURL').value;
     window.open(url, '_blank');
+     chrome.tabs.query({active: true}, function(tabs){
+      console.log('Fetch gomb kattintva, TabID:', tabs[0].id);
+
+     })
+
+    //chrome.tabs.hide(firstTabid);
+
     chrome.action.setPopup({popup: 'popup.html'})
       chrome.action.openPopup()
 
@@ -70,8 +77,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get gomb: új Chrome tabon nyissa meg a fetchURL címet
   document.getElementById('get').addEventListener('click', () => {
    // const url = document.getElementById('get').value;
-     chrome.action.setPopup({popup: 'popup.html'})
-      chrome.action.openPopup()
+   //url="https://ingatlan.com/lista/elado+haz+csaladi-haz+29-mFt-ig+heves-megye"
+    //const url = document.getElementById('fetchURL').value;
+   //chrome.tabs.create({
+   //   url: url
+   // });
+    const Furl = document.getElementById('fetchURL')
+    ActiveTabID = chrome.tabs.query({active: true}, function(tabs){
+     console.log('GET gomb kattintva, TabID:', tabs[0].id);
+
+      ActiveTabID  = tabs[0].id;
+      ActiveTabURL = tabs[0].url;
+      ActiveTabTitle = tabs[0].title;
+        console.log('GET gomb kattintva, TabURL:', ActiveTabURL);
+      Furl.value = ActiveTabURL;
+    //   Furl=ActiveTabURL;
+     chrome.storage.local.set({ ActiveTabID: ActiveTabID,  ActiveTabURL:  ActiveTabURL });
+
+    console.log('GET gomb kattintva, TabID:', ActiveTabURL);
+    chrome.tabs.remove(ActiveTabID)
+
+    //chrome.tabs.close(ActiveTabID);
+    //chrome.tabs.update(firstTabid, {url: url});
+
+    //chrome.tabs.close(firstTabid);
+    })
+
+    //chrome.tabs.hide(firstTabid);
+    console.log('GET gomb kattintva, TabID:', ActiveTabID);
+    // chrome.action.setPopup({popup: 'popup.html'})
+    //  chrome.action.openPopup()
    // window.open(url, '_blank');
   });
 
@@ -86,6 +121,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('pause').addEventListener('click', () => {
     // Üresen hagyva
+     const url = document.getElementById('fetchURL').value;
+    chrome.offscreen.createDocument({
+  url: url,
+  reasons: ['CLIPBOARD'],
+  justification: 'reason for needing the document',
+});
      chrome.action.setPopup({popup: 'popup.html'})
       chrome.action.openPopup()
     console.log('pause kattintva');

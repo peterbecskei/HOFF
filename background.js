@@ -61,7 +61,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
         });
 
         chrome.action.setBadgeText({ text: newUnreadCount.toString() });
-        chrome.action.setBadgeBackgroundColor({ color: "#FF0000" });
+        chrome.action.setBadgeBackgroundColor({ color: "#AE0000" });
       }
     });
   }
