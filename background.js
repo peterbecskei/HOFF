@@ -36,12 +36,21 @@ chrome.notifications.onButtonClicked.addListener(async () => {
 // Alarm listener for periodic notifications
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "minuteNotifier") {
+  chrome.storage.local.get(["ActiveTabID", "ActiveTabURL"], (tabs) => {
+    chrome.tabs.update(tabs.ActiveTabID, { active: true })
+     console.log('Alarm triggered for tab ID:', tabs.ActiveTabID, 'URL:', tabs.ActiveTabURL);
+    chrome.tabs.reload(tabs.ActiveTabID);
+   // const tal = document.getElementsByClassName("px-0 d-none d-sm-block text-white")[0].innerText;
+    const tal = ActiveTabID
+
+    })     //console.log('Alarm triggered for tab ID:', tabs.ActiveTabID, 'URL:', tabs.ActiveTabURL);
+   // const tal = "ActiveTabID"
     chrome.storage.local.get(["isRunning", "notifications", "unreadCount"], (data) => {
       if (data.isRunning) {
         const time = new Date().toLocaleTimeString();
         const notification = {
           id: Date.now().toString(),
-          message: `Most a pontos idő: ${time}`,
+          message: `Most ${tal}: ${time}`,
           read: false
         };
         // Add new notification to storage

@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
      chrome.storage.local.set({ ActiveTabID: ActiveTabID,  ActiveTabURL:  ActiveTabURL });
 
     console.log('GET gomb kattintva, TabID:', ActiveTabURL);
-    chrome.tabs.remove(ActiveTabID)
+  //  chrome.tabs.remove(ActiveTabID)
 
     //chrome.tabs.close(ActiveTabID);
     //chrome.tabs.update(firstTabid, {url: url});
