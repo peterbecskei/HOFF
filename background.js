@@ -36,32 +36,36 @@ chrome.notifications.onButtonClicked.addListener(async () => {
 // Alarm listener for periodic notifications
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === "minuteNotifier") {
-  chrome.storage.local.get(["ActiveTabID", "ActiveTabURL"], (tabs) => {
-    chrome.tabs.update(tabs.ActiveTabID, { active: true })
-     console.log('Alarm triggered for tab ID:', tabs.ActiveTabID, 'URL:', tabs.ActiveTabURL);
-    chrome.tabs.reload(tabs.ActiveTabID);
-   // const tal = document.getElementsByClassName("px-0 d-none d-sm-block text-white")[0].innerText;
-    const tal = ActiveTabID
 
-    })     //console.log('Alarm triggered for tab ID:', tabs.ActiveTabID, 'URL:', tabs.ActiveTabURL);
+
+
    // const tal = "ActiveTabID"
     chrome.storage.local.get(["isRunning", "notifications", "unreadCount"], (data) => {
       if (data.isRunning) {
-        const time = new Date().toLocaleTimeString();
+
+        chrome.storage.local.get(["ActiveTabID", "ActiveTabURL"], (tabs) => {
+        chrome.tabs.update(tabs.ActiveTabID, { active: true })
+        console.log('Alarm triggered for tab ID:', tabs.ActiveTabID, 'URL:', tabs.ActiveTabURL);
+        chrome.tabs.reload(tabs.ActiveTabID);
+            // const tal = document.getElementsByClassName("px-0 d-none d-sm-block text-white")[0].innerText;
+        //const tal = ActiveTabID
+
+          const time = new Date().toLocaleTimeString();
         const notification = {
           id: Date.now().toString(),
-          message: `Most ${tal}: ${time}`,
+          message: `Most : ${time}`,
           read: false
         };
-        // Add new notification to storage
+
+         // Add new notification to storage
         const updatedNotifications = [...data.notifications, notification];
         const newUnreadCount = data.unreadCount + 1;
-
+        // Save updated notifications and unread count
         chrome.storage.local.set({
           notifications: updatedNotifications,
           unreadCount: newUnreadCount
         });
-
+        // Create a system notification
         chrome.notifications.create(notification.id, {
           type: "basic",
           iconUrl: "icons/icon48.png",
@@ -69,12 +73,18 @@ chrome.alarms.onAlarm.addListener((alarm) => {
           message: notification.message
         });
 
+        // Update badge text with unread count
         chrome.action.setBadgeText({ text: newUnreadCount.toString() });
         chrome.action.setBadgeBackgroundColor({ color: "#AE0000" });
-      }
-    });
-  }
-});
+
+       })     //console.log('Alarm triggered for tab ID:', tabs.ActiveTabID, 'URL:', tabs.ActiveTabURL);
+
+
+
+      }   // End of if (data.isRunning)
+    });     // End of chrome.storage.local.get(["isRunning", "notifications", "unreadCount"], (data)
+  }     // End of chrome.storage.local.get(["ActiveTabID", "ActiveTabURL"], (tabs)
+});   // End of alarm listener chrome.alarms.onAlarm.addListener((alarm)
 
 // Action button click listener to mark notifications as read
 chrome.action.onClicked.addListener(() => {
